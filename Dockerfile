@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:8.4-cli
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -36,7 +36,7 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Install composer and npm dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 RUN npm install
 RUN npm run build
 
