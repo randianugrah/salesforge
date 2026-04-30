@@ -126,7 +126,7 @@ class SalesPageController extends Controller
 
         try {
             // Check if we are using LiteLLM/OpenAI format or Google format
-            if (str_starts_with($apiKey, 'sk-')) {
+            if (str_starts_with((string)$apiKey, 'sk-')) {
                 $response = Http::withToken($apiKey)->post("{$baseUrl}/chat/completions", [
                     'model' => 'vertex_ai/gemini-2.0-flash-lite',
                     'messages' => [
@@ -162,7 +162,7 @@ class SalesPageController extends Controller
                 \Log::error('AI API Failure Status: ' . $response->status());
                 \Log::error('AI API Failure Body: ' . $response->body());
             }
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Generation Exception: ' . $e->getMessage());
         }
     }
