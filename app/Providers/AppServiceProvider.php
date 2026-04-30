@@ -25,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
+        // Jika dideploy di Render, gunakan RENDER_EXTERNAL_URL secara otomatis
+        if (isset($_SERVER['RENDER_EXTERNAL_URL'])) {
+            config(['app.url' => $_SERVER['RENDER_EXTERNAL_URL']]);
+        }
+
         Vite::prefetch(concurrency: 3);
     }
 }
