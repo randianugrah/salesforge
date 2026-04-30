@@ -38,6 +38,13 @@ COPY . /var/www
 # Install composer and npm dependencies
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 RUN npm install
+
+# Declare build arg so APP_URL can be passed in at build time
+ARG APP_URL=https://salesforge-ps8q.onrender.com
+
+# Regenerate ziggy.js with the correct production URL before building frontend
+RUN APP_URL=${APP_URL} php artisan ziggy:generate resources/js/ziggy.js
+
 RUN npm run build
 
 # Ensure database directory exists and set permissions
