@@ -26,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Jika dideploy di Render, gunakan RENDER_EXTERNAL_URL secara otomatis
-        if (isset($_SERVER['RENDER_EXTERNAL_URL'])) {
-            config(['app.url' => $_SERVER['RENDER_EXTERNAL_URL']]);
+        if ($renderUrl = env('RENDER_EXTERNAL_URL')) {
+            config(['app.url' => $renderUrl]);
         }
 
         Vite::prefetch(concurrency: 3);
