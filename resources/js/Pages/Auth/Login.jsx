@@ -94,7 +94,7 @@ export default function Login({ status, canResetPassword }) {
                                         name="email"
                                         value={data.email}
                                         onChange={(e) => setData('email', e.target.value)}
-                                        placeholder="name@company.com"
+                                        placeholder="your@email.com"
                                         required
                                         className="w-full h-12 px-4 bg-white/5 border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-xl text-gray-200 placeholder:text-gray-600 text-sm transition-all outline-none"
                                     />
